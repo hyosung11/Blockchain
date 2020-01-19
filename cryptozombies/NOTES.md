@@ -109,3 +109,6 @@ uint8 c = a * b;
 // we have to typecast b as a uint8 to make it work:
 uint8 c = a * uint8(b);
 ```
+
+### Chapter 12: Putting It Together
+  - We're going to create a public function that takes an input, the zombie's name, and uses the name to create a zombie with random DNA.
