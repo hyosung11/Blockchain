@@ -5,6 +5,9 @@ pragma solidity >=0.5.0 <0.6.0;
 // 2. Create contract here
 contract ZombieFactory {
 
+    // declare our event here
+    event NewZombie(uint zombieId, string name, uint dna);
+
     // This will be stored permanently in the blockchain
     uint dnaDigits = 16;
 
@@ -25,7 +28,11 @@ contract ZombieFactory {
     function _createZombie(string memory _name, uint _dna) private {
 
         // create a new zombie and add it to the zombies array
-        zombies.push(Zombie(_name, _dna));
+        // zombies.push(Zombie(_name, _dna));
+
+        // fire event here
+        uint id = zombies.push(Zombie(_name, _dna)) - 1;
+        emit NewZombie(id, _name, _dna);
     }
 
     function _generateRandomDna(string memory _str) private view returns (uint) {
