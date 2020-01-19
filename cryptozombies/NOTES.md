@@ -66,3 +66,16 @@ Person satoshi = Person(172, "Satoshi");
 people.push(satoshi);
 ```
 `people.push(Person(16, "Vitalik"));`
+
+### Chapter 9: Private / Public Functions
+- In Solidity, functions are public by default. This means anyone (or any other contract) can call your contract's function and execute its code.
+- Mark your functions as `private` by default, and then only make `public` the functions you want to expose to the world.
+- As you can see, we use the keyword private after the function name. And as with function parameters, it's convention to start private function names with an underscore (_).
+
+```
+uint[] numbers;
+
+function _addToArray(uint _number) private {
+  numbers.push(_number);
+}
+```
