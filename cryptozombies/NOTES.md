@@ -92,7 +92,20 @@ function sayHello() public returns (string memory) {
 - **view** function (only views data doesn't modify it)
   - `function sayHello() public view returns (string memory) {`
 - **pure** function (not even accessing any data in the app, only its function parameters)
-  - ```function _multiply(uint a, uint b) private pure returns (uint) {
+  - `function _multiply(uint a, uint b) private pure returns (uint) {
   return a * b;
-}
+}`
+
+### Chapter 11: Keccak256 and Typecasting
+- Ethereum has the hash function keccak256 built in, which is a version of SHA3.
+- A hash function basically maps an input into a random 256-bit hexidecimal number. A slight change in the input will cause a large change in the hash.
+-  `keccak256` expects a single parameter of type `bytes`. This means that we have to "pack" any parameters before calling `keccak256`:
+- Typecasting: sometimes you need to convert between data types.
+```
+uint8 a = 5;
+uint b = 6;
+// throws an error because a * b returns a uint, not uint8:
+uint8 c = a * b;
+// we have to typecast b as a uint8 to make it work:
+uint8 c = a * uint8(b);
 ```
