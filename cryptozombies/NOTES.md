@@ -55,7 +55,7 @@ function eatHamburgers(string memory _name, uint _amount) public {
 - Two ways to pass an argument to a Solidity function:
   - By **value**, which means that the Solidity compiler *creates a new copy* of the parameter's value and *passes it to your function*. This allows your function to modify the value without worrying that the value of the initial parameter gets changed.
   - By **reference**, which means that your function is called with a reference to the original variable. Thus, if your function changes the value of the variable it receives, the *value of the original variable gets changed.*
--  It's convention (but not required) to start function parameter variable names with an underscore _ in order to differentiate them from global variables.
+-  It's convention (but not required) to start function parameter variable names with an underscore (_) in order to differentiate them from global variables.
 
 ### Chapter 8: Working with Structs and Arrays
 ```
@@ -77,5 +77,22 @@ uint[] numbers;
 
 function _addToArray(uint _number) private {
   numbers.push(_number);
+}
+```
+
+### Chapter 10: More on Functions
+- function **return values**
+```
+string greeting = "What's up dog";
+
+function sayHello() public returns (string memory) {
+  return greeting;
+}
+```
+- **view** function (only views data doesn't modify it)
+  - `function sayHello() public view returns (string memory) {`
+- **pure** function (not even accessing any data in the app, only its function parameters)
+  - ```function _multiply(uint a, uint b) private pure returns (uint) {
+  return a * b;
 }
 ```
