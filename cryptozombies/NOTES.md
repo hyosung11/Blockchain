@@ -166,3 +166,43 @@ function whatIsMyNumber() public view returns (uint) {
   return favoriteNumber[msg.sender];
 }
 ```
+
+### Chapter 4: Require
+- `require` makes it so that the function will throw an error and stop executing if some condition is not true:
+```
+function sayHiToVitalik(string memory _name) public returns (string memory) {
+  // Compares if _name equals "Vitalik". Throws an error and exits if not true.
+  // (Side note: Solidity doesn't have native string comparison, so we
+  // compare their keccak256 hashes to see if the strings are equal)
+  require(keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Vitalik")));
+  // If it's true, proceed with the function:
+  return "Hi!";
+}
+```
+
+### Chapter 5: Inheritance
+- `inheritance` allows splitting of code across multiple contracts
+- This can be used for logical inheritance (such as with a subclass, a `Cat` is an `Animal`). But it can also be used simply for organizing your code by grouping similar logic together into different contracts.
+```
+contract Doge {
+  function catchphrase() public returns (string memory) {
+    return "So Wow CryptoDoge";
+  }
+}
+
+contract BabyDoge is Doge {
+  function anotherCatchphrase() public returns (string memory) {
+    return "Such Moon BabyDoge";
+  }
+}
+```
+
+### Chapter 6: Import
+- When you have multiple files and you want to import one file into another, Solidity uses the `import` keyword:
+```
+import "./someothercontract.sol";
+
+contract newContract is SomeOtherContract {
+
+}
+```

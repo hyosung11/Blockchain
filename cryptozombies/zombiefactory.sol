@@ -51,7 +51,16 @@ contract ZombieFactory {
     }
 
     function createRandomZombie(string memory _name) public {
+        // require function only gets executed once per user
+        require(ownerZombieCount[msg.sender] == 0);
         uint randDna = _generateRandomDna(_name);
         _createZombie(_name, randDna);
     }
+}
+
+
+// Make a contract called ZombieFeeding below ZombieFactory. This contract should inherit from our ZombieFactory contract.
+
+contract ZombieFeeding is ZombieFactory {
+  
 }
