@@ -57,10 +57,3 @@ contract ZombieFactory {
         _createZombie(_name, randDna);
     }
 }
-
-
-// Make a contract called ZombieFeeding below ZombieFactory. This contract should inherit from our ZombieFactory contract.
-
-contract ZombieFeeding is ZombieFactory {
-  
-}
