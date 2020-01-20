@@ -36,13 +36,18 @@ contract ZombieFactory {
 
         // fire event here
         uint id = zombies.push(Zombie(_name, _dna)) - 1;
+
+        // update zombieToOwner mapping to store msg.sender under the id
+        zombieToOwner[id] = msg.sender;
+        // increase ownerZombieCount for this msg.sender
+        ownerZombieCount[msg.sender]++;
+
         emit NewZombie(id, _name, _dna);
     }
 
     function _generateRandomDna(string memory _str) private view returns (uint) {
         uint rand = uint(keccak256(abi.encodePacked(_str)));
         return rand % dnaModulus;
-
     }
 
     function createRandomZombie(string memory _name) public {

@@ -111,10 +111,10 @@ uint8 c = a * uint8(b);
 ```
 
 ### Chapter 12: Putting It Together
-  - We're going to create a public function that takes an input, the zombie's name, and uses the name to create a zombie with random DNA.
+- We're going to create a public function that takes an input, the zombie's name, and uses the name to create a zombie with random DNA.
 
 ### Chapter 13: Events
-  - Events are a way for your contract to communicate that something happened on the blockchain to your app front-end, which can be 'listening' for certain events and take action when they happen.
+- Events are a way for your contract to communicate that something happened on the blockchain to your app front-end, which can be 'listening' for certain events and take action when they happen.
 ```
 // declare the event
 event IntegersAdded(uint x, uint y, uint result);
@@ -124,5 +124,45 @@ function add(uint _x, uint _y) public returns (uint) {
   // fire an event to let the app know the function was called:
   emit IntegersAdded(_x, _y, result);
   return result;
+}
+```
+
+### Chapter 14: Web3.js
+- Web3.js: Ethereum JavaScript library to interact with frontend.
+- What our javascript then does is take the values generated in zombieDetails above, and use some browser-based javascript magic (we're using Vue.js) to swap out the images and apply CSS filters.
+
+---
+
+## Lesson 2 Overview
+
+### Chapter 2: Mappings and Addresses
+- data types: `mapping` and `addresses`
+- Addresses: an address is owned by a specific user (or a smart contract).
+- Mappings
+  - another way to store organized data in Solidity (like `structs` and `arrays`)
+  - A mapping is essentially a key-value store for storing and looking up data
+
+```
+// For a financial app, storing a uint that holds the user's account balance:
+mapping (address => uint) public accountBalance;
+// Or could be used to store / lookup usernames based on userId
+mapping (uint => string) userIdToName;
+```
+
+### Chapter 3: Msg.sender
+- In Solidity, there are certain global variables that are available to all functions. One of these is `msg.sender`, which refers to the address of the person (or smart contract) who called the current function.
+```
+mapping (address => uint) favoriteNumber;
+
+function setMyNumber(uint _myNumber) public {
+  // Update our `favoriteNumber` mapping to store `_myNumber` under `msg.sender`
+  favoriteNumber[msg.sender] = _myNumber;
+  // ^ The syntax for storing data in a mapping is just like with arrays
+}
+
+function whatIsMyNumber() public view returns (uint) {
+  // Retrieve the value stored in the sender's address
+  // Will be `0` if the sender hasn't called `setMyNumber` yet
+  return favoriteNumber[msg.sender];
 }
 ```
