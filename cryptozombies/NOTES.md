@@ -406,3 +406,28 @@ ZombieFactory.NewZombie(function(error, result) {
   generateZombie(result.zombieId, result.name, result.dna)
 })
 ```
+
+---
+
+## Lesson 3: Advanced Solidity Concepts
+- contract ownership
+- gas costs
+- code optimization
+- security
+
+### Chapter 1: Immutability of Contracts
+- The code is law.
+- If you read the code of a smart contract and verify it, you can be sure that every time you call a function it's going to do exactly what the code says it will do.
+- No one can later change that function and give you unexpected results.
+- **External Dependencies**
+  - have functions that will allow you to update key portions of the DApp
+  - e.g.,  instead of hard coding the CryptoKitties contract address into our DApp, we should probably have a `setKittyContractAddress` function that lets us change this address in the future in case something happens to the CryptoKitties contract.
+
+### Chapter 2: Ownable Contracts
+- `setKittyContractAddress` is `external`, so anyone can call it!
+- We do want the ability to update this address in our contract, but we don't want everyone to be able to update it.
+- To handle cases like this, one common practice that has emerged is to make contracts `Ownable` — meaning they have an owner (you) who has special privileges.
+- OpenZeppelin's `Ownable` contract at ownable.sol
+- Constructors: `function Ownable()` is a `constructor`, which is an optional special function that has the same name as the contract. It will get executed only one time, when the contract is first created.
+- Function Modifiers: `modifier onlyOwner()`. Modifiers are kind of half-functions that are used to modify other functions, usually to check some requirements prior to execution.
+  - In this case, `onlyOwner` can be used to limit access so only the owner of the contract can run this function.
