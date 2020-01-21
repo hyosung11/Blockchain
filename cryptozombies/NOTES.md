@@ -247,3 +247,15 @@ contract SandwichFactory {
     // ...if you want to copy the changes back into blockchain storage.
   }
 }
+```
+
+### Chapter 8: Zombie DNA
+- The formula for calculating a new zombie's DNA is simple: the average between the feeding zombie's DNA and the target's DNA.
+```
+function testDnaSplicing() public {
+  uint zombieDna = 2222222222222222;
+  uint targetDna = 4444444444444444;
+  uint newZombieDna = (zombieDna + targetDna) / 2;
+  // ^ will be equal to 3333333333333333
+}
+```
