@@ -264,3 +264,49 @@ function testDnaSplicing() public {
 - In addition to `public` and `private`, Solidity has two more types of visibility for functions: `internal` and `external`.
 - `internal` is the same as `private`, *except that it's also accessible to contracts that inherit from this contract.*
 - `external` is similar to `public`, except that these functions can ONLY be called outside the contract — they can't be called by other functions inside that contract.
+```
+contract Sandwich {
+  uint private sandwichesEaten = 0;
+
+  function eat() internal {
+    sandwichesEaten++;
+  }
+}
+
+contract BLT is Sandwich {
+  uint private baconSandwichesEaten = 0;
+
+  function eatWithBacon() public returns (string memory) {
+    baconSandwichesEaten++;
+    // We can call this here because it's internal
+    eat();
+  }
+}
+```
+
+### Chapter 10: What Do Zombies Eat? - CryptoKitties
+- `interface` needed for our contract to talk to another contract on the blockchain that we don't own.
+- E.g.,
+```
+contract LuckyNumber {
+  mapping(address => uint) numbers;
+
+  function setNum(uint _num) public {
+    numbers[msg.sender] = _num;
+  }
+
+  function getNum(address _myAddress) public view returns (uint) {
+    return numbers[_myAddress];
+  }
+}
+```
+- define an **interface** of the `LuckyNumber` contract:
+```
+contract NumberInterface {
+  function getNum(address _myAddress) public view returns (uint);
+}
+```
+  - only declare functions we want to interact with (e.g., `getNum`)
+  - end function with (;) not defining function bodies ({and})
+- looks like a contract skeleton, so compiler knows it's an interface
+- in Solidity you can return more than one value from a function.
