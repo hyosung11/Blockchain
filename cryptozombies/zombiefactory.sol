@@ -29,7 +29,8 @@ contract ZombieFactory {
 
     // Create a public function named createZombie. It should take two parameters: _name (a string), and _dna (a uint). Don't forget to pass the first argument by value by using the memory keyword.
     // Change it to a private function.
-    function _createZombie(string memory _name, uint _dna) private {
+    // change from private to internal so our other contracts can access it.
+    function _createZombie(string memory _name, uint _dna) internal {
 
         // create a new zombie and add it to the zombies array
         // zombies.push(Zombie(_name, _dna));
