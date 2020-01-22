@@ -20,6 +20,9 @@ contract ZombieFactory is Ownable {
     // Create a uint named dnaModulus, and set it equal to 10 to the power of dnaDigits.
     uint dnaModulus = 10 ** dnaDigits;
 
+    // declare a uint called cooldownTime = to 1 days
+    uint cooldownTime = 1 days;
+
     // Create a `struct` named `Zombie` with properties: name(a string) and dna (a uint)
     struct Zombie {
         string name;
@@ -44,7 +47,7 @@ contract ZombieFactory is Ownable {
         // zombies.push(Zombie(_name, _dna));
 
         // fire event here
-        uint id = zombies.push(Zombie(_name, _dna)) - 1;
+        uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime))) - 1;
 
         // update zombieToOwner mapping to store msg.sender under the id
         zombieToOwner[id] = msg.sender;

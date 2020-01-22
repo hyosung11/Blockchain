@@ -35,6 +35,16 @@ contract ZombieFeeding is ZombieFactory {
       kittyContract = KittyInterface(_address);
     }
 
+    // define _triggerCooldown function here
+    function _triggerCooldown(Zombie storage _zombie) internal {
+      _zombie.readyTime = uint32(now + cooldownTime);
+    }
+
+    // define _isReady function here
+    function _isReady(Zombie storage _zombie) internal view returns (bool) {
+      return (_zombie.readyTime <= now);
+    }
+
     // create a public function called feedAndMultiply that takes two parameters a uint _zombieId and a uint _targetDna; add third parameter
     function feedAndMultiply(uint _zombieId, uint _targetDna, string memory _species) public {
 
