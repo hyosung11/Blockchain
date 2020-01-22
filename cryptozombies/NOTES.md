@@ -431,3 +431,11 @@ ZombieFactory.NewZombie(function(error, result) {
 - Constructors: `function Ownable()` is a `constructor`, which is an optional special function that has the same name as the contract. It will get executed only one time, when the contract is first created.
 - Function Modifiers: `modifier onlyOwner()`. Modifiers are kind of half-functions that are used to modify other functions, usually to check some requirements prior to execution.
   - In this case, `onlyOwner` can be used to limit access so only the owner of the contract can run this function.
+
+### Chapter 3: onlyOwner Function Modifier
+- Now that our base contract ZombieFactory inherits from Ownable, we can use the `onlyOwner` function modifier in ZombieFeeding as well.
+- A function modifier looks just like a function, but uses the keyword `modifier` instead of the keyword `function`. And it can't be called directly like a function can — instead we can attach the modifier's name at the end of a function definition to change that function's behavior.
+- Note: Giving the owner special powers over the contract like this is often necessary, but it could also be used maliciously. For example, the owner could add a backdoor function that would allow him to transfer anyone's zombies to himself!
+- So it's important to remember that just because a DApp is on Ethereum does not automatically mean it's decentralized — you have to actually read the full source code to make sure it's free of special controls by the owner that you need to potentially worry about. There's a careful balance as a developer between maintaining control over a DApp such that you can fix potential bugs, and building an owner-less platform that your users can trust to secure their data.
+
+### Chapter 4: Gas
